@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adesão com Localização</title>
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- cep (mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Outros scripts -->
+  <script defer src="mapa-ades.js"></script>
+  <script defer src="carrega-planos-ades.js"></script>
+  <script defer src="carrega-comodatos-ades.js"></script>
+  <script defer src="cep-ades.js"></script>
+</head>
+
+<body>
+
+ <div style="padding: 10px;">
+    <button class="botao-voltar1" onclick="voltarPagina()">⬅ Voltar</button>
+  </div>
+
+  <main class="container">
+    <h1>Adesão Nova</h1>
+
+
+    <form id="formulario">
+      <!-- Adesão Nova -->
+      <div class="form-group">
+        <!--<label for="ADNV">Adesão Nova</label>-->
+        <select name="ADNV" id="ADNV">
+          <option value="SIM">Sim</option>
+        </select>
+      </div>
+
+<!-- Plano -->
+<div class="form-group" id="planos-container">
+  <label for="PLANO_SELECT">Plano(s)</label>
+
+  <div class="linha-plano" style="display: flex; gap: 8px;">
+    <select id="PLANO_SELECT" required>
+      <option value="">Selecione um plano</option>
+      <!-- As opções serão preenchidas dinamicamente -->
+    </select>
+    <button type="button" id="adicionar-plano" style="padding: 2px 6px; font-size: 12px;">+</button>
+  </div>
+
+  <ul id="planos-lista" style="margin-top: 10px; padding-left: 20px;"></ul>
+
+  <!-- Campo oculto para armazenar os valores finais -->
+  <input type="hidden" id="PLANO" name="PLANO">
+</div>
+
+
+      <!-- Valor -->
+      <div class="form-group">
+        <label for="VALOR">Valor Mensal:</label>
+        <textarea id="VALOR" rows="1" required></textarea>
+      </div>
+
+      <!-- Vencimento -->
+      <div class="form-group">
+        <label for="VENCIMENTO">Dia do Vencimento:</label>
+        <textarea id="VENCIMENTO" rows="1" required></textarea>
+      </div>
+
+      <!-- Valor da adesão  -->
+      <div class="form-group">
+        <label for="VALORADS">Valor Adesão:</label>
+        <textarea id="VALORADS" rows="1"required></textarea>
+      </div>
+
+      <!-- Fidelidade -->
+      <div class="form-group">
+        <label for="FIDELIDADE">Fidelidade:</label>
+        <textarea id="FIDELIDADE" rows="1"required></textarea>
+      </div>
+
+       <!-- Telefone -->
+      <div class="form-group">
+        <label for="TELEFONE">Nome/Telefone:</label>
+        <textarea id="TELEFONE" rows="1"required></textarea>
+      </div>
+
+       <!-- Com compra de equipamento -->
+<div class="form-group">
+  <label for="cpdeq">Equipamentos vendidos:</label>
+
+  <select name="cpdeq" id="cpdeq">
+     <option value="SIM">Sim</option>
+    <option value="NÃO" selected>Não</option>
+  </select>
+</div>
+
+<!-- Campos extras visíveis apenas se SIM for selecionado -->
+<div id="campo-equipamento" class="form-group equipamento-box" style="display: none;">
+  <h3>Equipamentos Vendidos:</h3>
+
+  <!-- Roteador -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ROTEADOR">Equipamento 1:</label>
+      <select id="ROTEADOR">
+        <option value=""></option>
+      </select>
+    </div>
+
+    <div class="coluna-quantidade">
+      <label for="qtdroteador">Qtd</label>
+      <input type="number" id="qtdroteador" min="0" max="100" >
+    </div>
+  </div>
+
+    <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ROTEADORWS">Equipamento 2:</label>
+      <select id="ROTEADORWS">
+        <option value=""></option>
+      </select>
+    </div>
+
+    <div class="coluna-quantidade">
+      <label for="qtdroteadorZ">Qtd</label>
+      <input type="number" id="qtdroteadorZ" min="0" max="100" >
+    </div>
+  </div>
+
+  <!-- ONU -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ONU_2">Modelo da ONU</label>
+      <select id="ONU_2">
+        <option value=""></option>
+         
+      </select>
+    </div>
+
+    <div class="coluna-quantidade">
+      <label for="qtdonu">Qtd</label>
+      <input type="number" id="qtdonu" min="0" max="100" >
+    </div>
+  </div>
+   <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="box">Modelo do tv box</label>
+      <select id="box">
+        <option value=""></option>
+       </select>
+    </div>
+
+    <div class="coluna-quantidade">
+      <label for="qtdbox">Qtd</label>
+      <input type="number" id="qtdbox" min="0" max="100" >
+    </div>
+  </div>
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+    <label for="cabo1">Modelo do cabo</label>
+      <select id="cabo1">
+  <option value=""></option>
+      </select>
+     </div>
+
+    <div class="coluna-quantidade">
+      <label for="qtdcabo">Qtd</label>
+      <input type="number" id="qtdcabo" min="0" max="1000000" >
+    </div>
+  </div>
+</div>
+<!--Fim -------------------------------------------------------------->
+<!-- Comodato -->
+<div class="form-group">
+  <label for="comodato">Equipamentos em comodato:</label>
+  <select name="comodato" id="comodato">
+    <option value="SIM">Sim</option>
+    <option value="NÃO" selected>Não</option>
+  </select>
+</div>
+
+<!-- Campos extras visíveis apenas se SIM for selecionado -->
+<div id="campo-comodato" class="form-group equipamento-box" style="display: none;">
+  <h3>Equipamentos em Comodato:</h3>
+
+  <!-- Roteador Comodato -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ROTEADOR_C">Equipamento 1:</label>
+      <select id="ROTEADOR_C">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="coluna-quantidade">
+      <label for="qtdroteador_c">Qtd</label>
+      <input type="number" id="qtdroteador_c" min="0" max="100">
+    </div>
+  </div>
+
+  <!-- Roteador Comodato2 -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ROTEADOR_C1">Equipamento 2:</label>
+      <select id="ROTEADOR_C1">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="coluna-quantidade">
+      <label for="qtdroteador_c1">Qtd</label>
+      <input type="number" id="qtdroteador_c" min="0" max="100">
+    </div>
+  </div>
+
+  <!-- ONU Comodato -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="ONU_C">Modelo da ONU:</label>
+      <select id="ONU_C">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="coluna-quantidade">
+      <label for="qtdonu_c">Qtd</label>
+      <input type="number" id="qtdonu_c" min="0" max="100">
+    </div>
+  </div>
+
+  <!-- Box Comodato -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="box_c">Modelo do TV Box:</label>
+      <select id="box_c">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="coluna-quantidade">
+      <label for="qtdbox_c">Qtd</label>
+      <input type="number" id="qtdbox_c" min="0" max="100">
+    </div>
+  </div>
+
+  <!-- Cabo Comodato -->
+  <div class="linha-equipamento">
+    <div class="coluna-equipamento">
+      <label for="cabo_c">Modelo do cabo:</label>
+      <select id="cabo_c">
+        <option value=""></option>
+      </select>
+    </div>
+    <div class="coluna-quantidade">
+      <label for="qtdcabo_c">Qtd</label>
+      <input type="number" id="qtdcabo_c" min="0" max="1000000">
+    </div>
+  </div>
+</div>
+
+
+      <!-- CEP -->
+      <div class="form-group">
+        <label for="cep">CEP</label>
+        <input type="text" id="cep" placeholder="00000-000" maxlength="9">
+        <button type="button" onclick="buscarEndereco()">Buscar Endereço</button>
+      </div>
+
+      <!-- Endereço exibido -->
+      <div class="form-group">
+        <label>Endereço:</label>
+        <p><strong>Logradouro:</strong> <span id="logradouro"></span></p>
+        <p><strong>Bairro:</strong> <span id="bairro"></span></p>
+        <p><strong>Cidade:</strong> <span id="localidade"></span></p>
+        <p><strong>Estado:</strong> <span id="uf"></span></p>
+      </div>
+      
+      <div class="form-group">
+  <label for="numero">Número</label>
+  <input type="text" id="numero" placeholder="Número da casa" required>
+</div>
+
+     <div class="form-group">
+  <label for="complemento">Complemento</label>
+  <input type="text" id="complemento" placeholder="Complemento" >
+</div>
+
+      <!-- Mapa -->
+      <div id="map" style="height: 300px; border-radius: 10px; margin-top: 10px;"></div>
+
+      <!-- Resultado final -->
+      <h4>Parecer Final</h4>
+      <div class="form-group">
+        <label for="resultado">Mascara para atendimento:</label>
+        <textarea id="resultado-completo"rows="15" readonly></textarea>
+      </div>
+      <div class="form-group">  
+        <label for="resultado_comprimido">Mascara para OS dos técnicos:</label>
+        <textarea id="resultado-resumido"rows="15" readonly></textarea> 
+      </div>
+
+      <button type="submit">Processar</button>
+    </form>
+
+    <footer>
+      <div class="marca-dagua">© TLucas 2025</div>
+    </footer>
+  </main>
+</body>
+</html>
