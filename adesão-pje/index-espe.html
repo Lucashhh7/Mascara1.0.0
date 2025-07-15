@@ -3,21 +3,21 @@
 <head>
  <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Adesão de link temporario</title>
+  <title>Adesão de projetos especiais</title>
 
   <!-- css -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style-espe.css">
 
   <!-- cep (mapa) -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- Outros scripts -->
-  <script defer src="mapa-linkt.js"></script>
-  <script defer src="carrega-planos-linkt.js"></script>
-  <script defer src="carrega-comodatos_linkt.js"></script>
-  <script defer src="cep-linkt.js"></script>
-  
+  <script defer src="mapa-espe.js"></script>
+  <script defer src="carrega-planos-espe.js"></script>
+  <script defer src="carrega-comodatos-espe.js"></script>
+  <script defer src="cep-espe.js"></script>
+
 </head>
 <body>
 
@@ -25,9 +25,8 @@
     <button class="botao-voltar1" onclick="voltarPagina()">⬅ Voltar</button>
   </div>
 
-
   <main class="container">
-    <h1>Adesão de link temporario</h1>
+    <h1>Adesão de Projetos Especiais</h1>
 
 
     <form id="formulario">
@@ -60,35 +59,33 @@
 
       <!-- Valor -->
       <div class="form-group">
-        <label for="VALOR">Valor:</label>
+        <label for="VALOR">Valor Mensal:</label>
         <textarea id="VALOR" rows="1" required></textarea>
       </div>
-    
+
+      <!-- Vencimento -->
+      <div class="form-group">
+        <label for="VENCIMENTO">Dia do Vencimento:</label>
+        <textarea id="VENCIMENTO" rows="1" required></textarea>
+      </div>
+
+      <!-- Valor da adesão  -->
+      <div class="form-group">
+        <label for="VALORADS">Valor Adesão:</label>
+        <textarea id="VALORADS" rows="1"required></textarea>
+      </div>
+
+      <!-- Fidelidade -->
+      <div class="form-group">
+        <label for="FIDELIDADE">Fidelidade:</label>
+        <textarea id="FIDELIDADE" rows="1"required></textarea>
+      </div>
+
        <!-- Telefone -->
       <div class="form-group">
         <label for="TELEFONE">Nome/Telefone:</label>
         <textarea id="TELEFONE" rows="1"required></textarea>
       </div>
-
-       <!-- Data instalação -->
-      <div class="form-group">
-        <label for="data_insta">Data de instalação:</label>
-        <textarea id="data_insta" rows="1"required></textarea>
-      </div>
-
-       <!-- Inicio do evento -->
-      <div class="form-group">
-        <label for="inicio_even">Inicio do evento:</label>
-        <textarea id="inicio_even" rows="1"required></textarea>
-      </div>
-
-        <!-- Fim do evento -->
-      <div class="form-group">
-        <label for="fim_even">Fim do evento:</label>
-        <textarea id="fim_even" rows="1"required></textarea>
-      </div>
-
-      
 
        <!-- Com compra de equipamento -->
 <div class="form-group">
@@ -105,7 +102,7 @@
   <h3>Equipamentos Vendidos:</h3>
 <input type="hidden" id="EQUIPAMENTOS_VENDIDOS" name="EQUIPAMENTOS_VENDIDOS">
 
-<div class="linha-equipamento" style="display: flex; gap: 8px;">
+<div class="linha-equipamento" style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
   <!-- Select do equipamento -->
   <div class="coluna-equipamento">
     <label for="ROTEADOR">Equipamento 1:</label>
@@ -122,11 +119,7 @@
 
   <!-- Botão de adicionar -->
   <div class="coluna-botao">
-    <button type="button" id="adicionar-equipamento" style="
-  font-size: 12px;
-  padding: 4px 8px;
-  height: 30px;
-">+</button>
+    <button type="button" id="adicionar-equipamento">+ Adicionar Equipamento</button>
   </div>
 </div>
 <!--final, segue no java-->
@@ -213,11 +206,7 @@
 
   <!-- Botão de adicionar -->
   <div class="coluna-botao">
-    <button type="button" id="adicionar-equipamento_com" style="
-  font-size: 12px;
-  padding: 4px 8px;
-  height: 30px;
-">+</button>
+    <button type="button" id="adicionar-equipamento_com">+ Adicionar Equipamento</button>
   </div>
 </div>
 <!------------------------------final, segue no java--------------------------------------->

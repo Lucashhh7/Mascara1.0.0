@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Central de Máscaras - Grupo People</title>
-  <link rel="icon" href="../home/icone/favicon.png" type="image/png" />
-  <style>
-    :root {
+  :root {
       --primary: #2563eb;
       --primary-hover: #1d4ed8;
       --background: #f9fafb;
@@ -111,39 +103,3 @@
       color: #9ca3af;
       border-top: 1px solid #e5e7eb;
     }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <img src="../home/icone/icone3.png" alt="Ícone" />
-    <span>Central de Máscaras Grupo People</span>
-  </header>
-
-  <main>
-    <div class="card">
-      <h2>Formulário de Adesão</h2>
-      <p>Máscara de Adesão</p>
-      <a href="../adesão/index.html">Abrir</a>
-    </div>
-
-    <div class="card">
-      <h2>Formulário de Projetos Especiais</h2>
-      <p>Máscara de Projetos Especiais</p>
-      <a href="../adesão pje/index.html">Abrir</a>
-    </div>
-
-    <div class="card">
-      <h2>Formulário de Projetos Temporários</h2>
-      <p>Máscara de Projetos Temporários</p>
-      <a href="../adesão temporario/index.html">Abrir</a>
-    </div>
-  </main>
-
-  <footer>
-    &copy; autor: Tauam Lucas 2025
-  </footer>
-
-</body>
-</html>
